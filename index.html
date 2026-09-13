@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raja's Wear — Luxury Men's Formalwear & Bespoke Suiting</title>
+  <meta name="description"
+    content="Discover Raja's Wear — the epitome of modern masculine elegance. Handcrafted bespoke men's suits, peak lapel tuxedos, cashmere blazers, and luxury formalwear." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230c0d0f%22/><text x=%2250%22 y=%2265%22 font-family=%22serif%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23d4af37%22 text-anchor=%22middle%22>R</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="container flex-center">
+      <span>Complimentary Worldwide Shipping on Orders Over $200 &nbsp;|&nbsp; <span class="gold-highlight">Bespoke
+          Fitting Appointments Available</span></span>
+    </div>
+  </div>
+
+  <!-- Global Header & Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="Raja's Wear Homepage">
+        <span class="brand-logo-text">Raja's Wear</span>
+        <span class="brand-logo-sub">Savile Row • Milan • New York</span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="nav-menu" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="products.html" class="nav-link">Shop</a>
+        <a href="collections.html" class="nav-link">Collections</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Action Icons -->
+      <div class="header-actions">
+        <!-- Search Trigger -->
+        <button type="button" class="action-btn search-trigger" aria-label="Search garments">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+          </svg>
+        </button>
+
+        <!-- Wishlist Link -->
+        <a href="products.html?view=wishlist" class="action-btn" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="badge-count wishlist-badge-count" style="display: none;">0</span>
+        </a>
+
+        <!-- Shopping Cart Drawer Trigger -->
+        <button type="button" class="action-btn cart-drawer-trigger" aria-label="Shopping bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span class="badge-count cart-badge-count" style="display: none;">0</span>
+        </button>
+
+        <!-- Light / Dark Theme Switch -->
+        <button type="button" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <!-- Moon icon for Dark Mode -->
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <!-- Sun icon for Light Mode -->
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button type="button" class="mobile-nav-toggle" aria-label="Open mobile menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu-drawer" aria-label="Mobile Navigation Drawer">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link active">Home <span>&rarr;</span></a>
+      <a href="products.html" class="mobile-nav-link">Shop All Suits <span>&rarr;</span></a>
+      <a href="collections.html" class="mobile-nav-link">Collections <span>&rarr;</span></a>
+      <a href="about.html" class="mobile-nav-link">About Atelier <span>&rarr;</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact Concierge <span>&rarr;</span></a>
+      <a href="cart.html" class="mobile-nav-link">Shopping Bag <span>&rarr;</span></a>
+    </div>
+    <div class="mobile-drawer-footer">
+      <p style="font-size: 0.85rem; color: var(--text-muted);">Savile Row • Milan • New York</p>
+      <a href="contact.html" class="btn btn-secondary btn-sm btn-full">Book Private Fitting</a>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" aria-label="Hero Showcase">
+      <div class="hero-background">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1920&q=85"
+          alt="Gentleman in bespoke dark suit" />
+      </div>
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+        <span class="eyebrow">Autumn / Winter Haute Couture</span>
+        <h1>Tailored for the Moments That Matter.</h1>
+        <p>
+          Precision architectural cutting meets authentic Milanese sprezzatura. Handcrafted from Super 150s Australian
+          Merino wool and pure Irish linen for the modern gentleman of quiet distinction.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="products.html" class="btn btn-primary">Shop Suits</a>
+          <a href="collections.html" class="btn btn-secondary">Explore Collections</a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">✦</span>
+            <span class="hero-feature-text">Super 150s Italian Wool</span>
+          </div>
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">✦</span>
+            <span class="hero-feature-text">Floating Canvas Construction</span>
+          </div>
+          <div class="hero-feature-item">
+            <span class="hero-feature-icon">✦</span>
+            <span class="hero-feature-text">Complimentary Tailoring</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED CATEGORIES SECTION -->
+    <section class="section-padding" aria-label="Categories">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Curated Departments</span>
+          <h2>The Architectural Wardrobe</h2>
+          <p>Each silhouette is engineered with internal floating horsehair canvas to drape naturally against the
+            masculine frame.</p>
+        </div>
+
+        <div class="grid categories-grid">
+          <!-- Business Suits -->
+          <a href="products.html?category=Business" class="category-card">
+            <div class="category-card-bg">
+              <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80"
+                alt="Executive Business Suit" loading="lazy" />
+            </div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Business Suits</h3>
+              <span class="category-card-count">12 Sovereign Designs</span>
+            </div>
+          </a>
+
+          <!-- Wedding Suits -->
+          <a href="products.html?category=Wedding" class="category-card">
+            <div class="category-card-bg">
+              <img src="https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=800&q=80"
+                alt="Wedding Formalwear" loading="lazy" />
+            </div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Wedding & Ceremonial</h3>
+              <span class="category-card-count">8 Gala Styles</span>
+            </div>
+          </a>
+
+          <!-- Tuxedos & Black Tie -->
+          <a href="products.html?category=Tuxedos" class="category-card">
+            <div class="category-card-bg">
+              <img src="https://images.unsplash.com/photo-1555069519-127aadedf1ee?auto=format&fit=crop&w=800&q=80"
+                alt="Black Tie Tuxedo" loading="lazy" />
+            </div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Tuxedos</h3>
+              <span class="category-card-count">Peak Lapel Mastery</span>
+            </div>
+          </a>
+
+          <!-- Italian Blazers -->
+          <a href="products.html?category=Blazers" class="category-card">
+            <div class="category-card-bg">
+              <img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=800&q=80"
+                alt="Italian Hopsack Blazer" loading="lazy" />
+            </div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Tailored Blazers</h3>
+              <span class="category-card-count">14 Soft Shoulder Cuts</span>
+            </div>
+          </a>
+
+          <!-- Luxury Accessories -->
+          <a href="products.html?category=Accessories" class="category-card">
+            <div class="category-card-bg">
+              <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=800&q=80"
+                alt="Gold Cufflinks and Silk Accents" loading="lazy" />
+            </div>
+            <div class="category-card-overlay"></div>
+            <div class="category-card-content">
+              <h3 class="category-card-title">Accessories</h3>
+              <span class="category-card-count">Cufflinks, Ties & Squares</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED MASTERWORKS (PRODUCTS) -->
+    <section class="section-padding" style="background: var(--bg-surface);" aria-label="Featured Suits">
+      <div class="container">
+        <div class="flex-between" style="flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;">
+          <div>
+            <span class="eyebrow">Handcrafted Editions</span>
+            <h2>Signature Creations</h2>
+          </div>
+          <a href="products.html" class="link-arrow">View All Garments &rarr;</a>
+        </div>
+
+        <!-- Populated via js/script.js from RAJA_PRODUCTS -->
+        <div class="grid products-grid grid-4" id="featuredSuitsGrid"></div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL COLLECTIONS SHOWCASE -->
+    <section class="section-padding" aria-label="Editorial Collections">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">The Editorial Edit</span>
+          <h2>Dressing the Connoisseur</h2>
+          <p>Two distinct narratives crafted for the pinnacle occasions of professional and celebratory life.</p>
+        </div>
+
+        <div class="editorial-grid">
+          <!-- Card 1: Executive -->
+          <article class="editorial-card">
+            <div class="editorial-card-bg">
+              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=85"
+                alt="The Executive Collection" loading="lazy" />
+            </div>
+            <div class="editorial-card-overlay"></div>
+            <div class="editorial-card-content">
+              <span class="eyebrow" style="color: var(--accent-gold-light);">Boardroom Authority</span>
+              <h3>The Executive Collection</h3>
+              <p>Chalkstripes, double-breasted flannels, and high-twist wools engineered to project calm dominance
+                during crucial negotiations.</p>
+              <a href="products.html?category=Business" class="btn btn-primary btn-sm">Explore Collection</a>
+            </div>
+          </article>
+
+          <!-- Card 2: Black Tie -->
+          <article class="editorial-card">
+            <div class="editorial-card-bg">
+              <img src="https://images.unsplash.com/photo-1555069519-127aadedf1ee?auto=format&fit=crop&w=1200&q=85"
+                alt="Black Tie Gala Mastery" loading="lazy" />
+            </div>
+            <div class="editorial-card-overlay"></div>
+            <div class="editorial-card-content">
+              <span class="eyebrow" style="color: var(--accent-gold-light);">Ceremonial Splendor</span>
+              <h3>Black Tie & Evening Gala</h3>
+              <p>Heavyweight British barathea wool, hand-rolled silk grosgrain peak lapels, and hand-pleated satin
+                cummerbund sets.</p>
+              <a href="products.html?category=Tuxedos" class="btn btn-secondary btn-sm"
+                style="color: #fff; border-color: rgba(255,255,255,0.4);">Discover Eveningwear</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRAND STORY SPLIT SECTION -->
+    <section class="section-padding story-section" aria-label="Brand Story">
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-media">
+            <img src="https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=1000&q=85"
+              alt="Master tailor at work on formal dinner jacket" loading="lazy" />
+            <div class="story-badge-quote">
+              <p>"A gentleman's suit is not mere cloth; it is the armor of his presence and character."</p>
+              <span>— Raja, Founder & Master Tailor</span>
+            </div>
+          </div>
+
+          <div class="story-content">
+            <span class="eyebrow">The Atelier Heritage</span>
+            <h2>Where Savile Row Precision Meets Milanese Sprezzatura.</h2>
+            <p>
+              Established with an unyielding reverence for classical bespoke craft, Raja's Wear was founded on a
+              singular principle: that true luxury is tactile, enduring, and meticulously personal.
+            </p>
+            <p>
+              We bypass ephemeral trends in favor of sculpted shoulder expressions, floating horsehair chest canvas, and
+              cloths sourced exclusively from centuries-old family mills in Biella, Yorkshire, and Como.
+            </p>
+            <div style="margin-top: 2rem;">
+              <a href="about.html" class="btn btn-primary">Read Our Story</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY RAJA'S WEAR: 4 PILLARS -->
+    <section class="section-padding" aria-label="Craftsmanship Pillars">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Artisanal Standards</span>
+          <h2>The Four Pillars of Raja's Wear</h2>
+          <p>Every jacket, trouser, and waistcoat passes through forty-eight distinct quality stages before earning our
+            crest.</p>
+        </div>
+
+        <div class="grid pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>Super 150s Italian Wools</h3>
+            <p>Woven exclusively from high-crimp Australian Merino wool by revered Italian mills including Vitale
+              Barberis Canonico.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="6" cy="6" r="3" />
+                <circle cx="6" cy="18" r="3" />
+                <line x1="20" y1="4" x2="8.12" y2="15.88" />
+                <line x1="14.47" y1="14.48" x2="20" y2="20" />
+                <line x1="8.12" y1="8.12" x2="12" y2="12" />
+              </svg>
+            </div>
+            <h3>Floating Canvas Chest</h3>
+            <p>Traditional horsehair and wool canvas sewn between fabric and lining, gradually molding to your unique
+              anatomical shape.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+                <line x1="7" y1="7" x2="7.01" y2="7" />
+              </svg>
+            </div>
+            <h3>Architectural Silhouette</h3>
+            <p>A natural suppression through the waist, clean back drape, and sculpted roped shoulders that elongate the
+              torso.</p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3>Lifetime Seam Guarantee</h3>
+            <p>We stand unflinchingly behind every stitch. Enjoy complimentary seam reinforcement and button replacement
+              for life.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT TESTIMONIALS -->
+    <section class="section-padding" style="background: var(--bg-surface);" aria-label="Testimonials">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Client Endorsements</span>
+          <h2>Words from Discerning Patrons</h2>
+          <p>Read reflections from executives, grooms, and dignitaries who wear Raja's Wear in moments of consequence.
+          </p>
+        </div>
+
+        <div class="grid testimonials-grid">
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">
+                "The Sovereign Navy three-piece is without peer. I wore it for our merger announcement in Zurich and
+                received unsolicited compliments from every corner of the boardroom. The drape is immaculate."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                alt="Marcus Sterling" class="author-avatar" />
+              <div>
+                <div class="author-name">Marcus Sterling</div>
+                <div class="author-title">Managing Director, Private Equity</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">
+                "For our wedding at Lake Como, I commissioned the Grand Savoy Tuxedo. The silk grosgrain peak lapels
+                caught the twilight light breathtakingly. It felt like a second skin yet looked regal in every
+                photograph."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
+                alt="Julian Vance" class="author-avatar" />
+              <div>
+                <div class="author-name">Julian Vance</div>
+                <div class="author-title">Architectural Partner</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="testimonial-stars">★★★★★</div>
+              <p class="testimonial-text">
+                "Having worn Savile Row bespoke suits for two decades, I was skeptical of online formalwear. Raja's Wear
+                exceeded every benchmark—the floating horsehair canvas and pitch of the sleeves are world-class."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+                alt="Sir David H. Thornton" class="author-avatar" />
+              <div>
+                <div class="author-name">David H. Thornton</div>
+                <div class="author-title">Senior Counsel & Fellow</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURATED INSTAGRAM / EDITORIAL GALLERY -->
+    <section class="section-padding-sm" aria-label="Visual Journal">
+      <div class="container">
+        <div class="flex-between" style="margin-bottom: 1.5rem;">
+          <span class="eyebrow" style="margin-bottom: 0;">Follow @RajasWear on Instagram</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="link-arrow"
+            style="font-size: 0.8rem;">View Sartorial Feed &rarr;</a>
+        </div>
+
+        <div class="insta-grid">
+          <div class="insta-item">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80"
+              alt="Bespoke Suit Details" loading="lazy" />
+            <div class="insta-overlay"><span>@rajaswear</span></div>
+          </div>
+          <div class="insta-item">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80"
+              alt="Gala Tuxedo" loading="lazy" />
+            <div class="insta-overlay"><span>@rajaswear</span></div>
+          </div>
+          <div class="insta-item">
+            <img src="https://images.unsplash.com/photo-1598808503746-f34c53b9323e?auto=format&fit=crop&w=600&q=80"
+              alt="Velvet Dinner Jacket" loading="lazy" />
+            <div class="insta-overlay"><span>@rajaswear</span></div>
+          </div>
+          <div class="insta-item">
+            <img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?auto=format&fit=crop&w=600&q=80"
+              alt="Italian Hopsack Blazer" loading="lazy" />
+            <div class="insta-overlay"><span>@rajaswear</span></div>
+          </div>
+          <div class="insta-item">
+            <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80"
+              alt="Double-Breasted Glen Plaid" loading="lazy" />
+            <div class="insta-overlay"><span>@rajaswear</span></div>
+          </div>
+          <div class="insta-item">
+            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=600&q=80"
+              alt="Gold Cufflinks" loading="lazy" />
+            <div class="insta-overlay"><span>@rajaswear</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER SUBSCRIPTION -->
+    <section class="section-padding" aria-label="The Connoisseurs Club">
+      <div class="container">
+        <div class="newsletter-card">
+          <span class="eyebrow">Private Society</span>
+          <h2>Join The Connoisseurs Club</h2>
+          <p style="max-width: 580px; margin: 0 auto; color: var(--text-secondary);">
+            Receive exclusive seasonal cloth allocations, private trunk show invitations in London and New York, and
+            bespoke styling treatises.
+          </p>
+
+          <form class="newsletter-form" id="homeNewsletterForm">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" required
+              aria-label="Email address" />
+            <button type="submit" class="btn btn-primary">Request Invitation</button>
+          </form>
+          <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">Strict confidentiality.
+            Unsubscribe at your convenience.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 1rem;">
+            <span class="brand-logo-text">Raja's Wear</span>
+            <span class="brand-logo-sub">Savile Row • Milan • New York</span>
+          </a>
+          <p>
+            An internationally acclaimed formalwear house crafting suits, tuxedos, and blazers through unyielding
+            dedication to time-honored artisanal tailoring.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com" class="social-icon" aria-label="Instagram">IG</a>
+            <a href="https://pinterest.com" class="social-icon" aria-label="Pinterest">PI</a>
+            <a href="https://linkedin.com" class="social-icon" aria-label="LinkedIn">IN</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Collections</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?category=Business">Executive Suits</a></li>
+            <li><a href="products.html?category=Tuxedos">Black Tie & Galas</a></li>
+            <li><a href="products.html?category=Wedding">Wedding & Ceremonial</a></li>
+            <li><a href="products.html?category=Blazers">Italian Soft Blazers</a></li>
+            <li><a href="products.html?category=Accessories">Sartorial Accents</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">The Atelier</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">Our Heritage</a></li>
+            <li><a href="about.html#craftsmanship">Tailoring Craft</a></li>
+            <li><a href="contact.html">Book Fitting Suite</a></li>
+            <li><a href="contact.html#faq">Formalwear FAQ</a></li>
+            <li><a href="cart.html">View Shopping Bag</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Private Concierge</h4>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">📍</span>
+            <span>14 Savile Row, Mayfair, London W1S 3JN</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">✉️</span>
+            <span>concierge@rajaswear.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-contact-icon">📞</span>
+            <span>+44 (0) 20 7946 0912</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYear">2026</span> Raja's Wear Haute Couture Ltd. All rights reserved.
+        </div>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Bespoke Service</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Sustainability Report</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SHOPPING CART DRAWER -->
+  <div class="cart-drawer-overlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" aria-label="Shopping Bag Drawer">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">Shopping Bag</h3>
+      <button type="button" class="action-btn cart-drawer-close" aria-label="Close Bag">✕</button>
+    </div>
+
+    <!-- Free Shipping Progress Tracker -->
+    <div class="shipping-progress-container">
+      <span class="shipping-progress-text">Add $200 for complimentary global shipping</span>
+      <div class="shipping-progress-bar-bg">
+        <div class="shipping-progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Items Container -->
+    <div class="cart-drawer-items"></div>
+
+    <!-- Drawer Footer -->
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal-row">
+        <span>Estimated Subtotal</span>
+        <span class="cart-drawer-subtotal">$0</span>
+      </div>
+      <div class="cart-drawer-buttons">
+        <a href="cart.html" class="btn btn-primary btn-full">View Full Bag & Checkout</a>
+        <button type="button" class="btn btn-secondary btn-sm btn-full" onclick="closeCartDrawer()">Continue
+          Browsing</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- SEARCH MODAL -->
+  <div class="modal-overlay" id="searchModal" aria-hidden="true">
+    <div class="modal-container" style="max-width: 680px;">
+      <button type="button" class="modal-close-btn" aria-label="Close search">✕</button>
+      <div class="search-modal-inner">
+        <span class="eyebrow">Instant Catalog Discovery</span>
+        <h3 style="margin-bottom: 1rem;">Search Raja's Wear</h3>
+        <div class="search-modal-input-wrap">
+          <input type="text" class="search-modal-input" placeholder="Search by garment, fabric, tone..."
+            aria-label="Search garments" />
+        </div>
+        <div class="search-modal-results">
+          <p style="text-align: center; color: var(--text-muted); padding: 1.5rem 0;">
+            Type to discover bespoke suits, dinner jackets, silk ties, and formal accessories.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK VIEW MODAL -->
+  <div class="modal-overlay" id="quickViewModal" aria-hidden="true">
+    <div class="modal-container">
+      <button type="button" class="modal-close-btn" aria-label="Close modal">✕</button>
+      <div id="quickViewContent"></div>
+    </div>
+  </div>
+
+  <!-- SIZE GUIDE MODAL -->
+  <div class="modal-overlay" id="sizeGuideModal" aria-hidden="true">
+    <div class="modal-container" style="max-width: 740px;">
+      <button type="button" class="modal-close-btn" aria-label="Close size guide">✕</button>
+      <div class="size-guide-modal-inner">
+        <div class="size-guide-header">
+          <div>
+            <span class="eyebrow">Atelier Sizing Guide</span>
+            <h3>Bespoke Suit & Tuxedo Chart</h3>
+          </div>
+          <div class="unit-switch-buttons">
+            <button type="button" class="unit-btn active" data-unit="inches">INCHES</button>
+            <button type="button" class="unit-btn" data-unit="cm">CENTIMETERS</button>
+          </div>
+        </div>
+
+        <table class="size-table" id="sizeGuideTable">
+          <thead>
+            <tr>
+              <th>Jacket Size</th>
+              <th>Chest Circumference</th>
+              <th>Waist (Trousers)</th>
+              <th>Overarm Length</th>
+              <th>Trouser Inseam</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>36R</td>
+              <td>36"</td>
+              <td>30"</td>
+              <td>32"</td>
+              <td>31"</td>
+            </tr>
+            <tr>
+              <td>38R</td>
+              <td>38"</td>
+              <td>32"</td>
+              <td>33"</td>
+              <td>31.5"</td>
+            </tr>
+            <tr>
+              <td>40R</td>
+              <td>40"</td>
+              <td>34"</td>
+              <td>34"</td>
+              <td>32"</td>
+            </tr>
+            <tr>
+              <td>42R</td>
+              <td>42"</td>
+              <td>36"</td>
+              <td>35"</td>
+              <td>32.5"</td>
+            </tr>
+            <tr>
+              <td>44R</td>
+              <td>44"</td>
+              <td>38"</td>
+              <td>36"</td>
+              <td>33"</td>
+            </tr>
+            <tr>
+              <td>46R</td>
+              <td>46"</td>
+              <td>40"</td>
+              <td>37"</td>
+              <td>33"</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--text-muted); line-height: 1.6;">
+          * All Raja's Wear trousers arrive with a 36-inch basted unfinished hem, allowing your local or atelier tailor
+          to establish an exact break preference (Full, Half, or No Break).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/products.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/intro-animation.js"></script>
+</body>
+
+</html>
