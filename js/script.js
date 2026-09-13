@@ -3,7 +3,12 @@
  * Core JavaScript Engine: Theming, Cart, Wishlist, Modals, Search, Validation
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  // Wait for the live catalog (Supabase) to load/merge before rendering.
+  // Falls straight through if products-sync.js isn't present or fails.
+  if (window.PRODUCTS_READY) {
+    try { await window.PRODUCTS_READY; } catch (e) {}
+  }
   initTheme();
   initNavbar();
   initCart();

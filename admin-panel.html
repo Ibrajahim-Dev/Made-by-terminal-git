@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<title>Catalog Dashboard — Raja's Wear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  :root {
+    --bg-page: #0b0c10;
+    --bg-surface: #12141a;
+    --bg-elevated: #1a1d26;
+    --bg-input: #161821;
+    --text-primary: #f5f6f8;
+    --text-secondary: #b6b9c2;
+    --text-muted: #757987;
+    --gold: #c5a059;
+    --gold-hover: #d8b26e;
+    --border: rgba(255, 255, 255, 0.1);
+    --danger: #c25b52;
+    --success: #6fae7d;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+  h1, h2, h3 { font-family: var(--font-serif); font-weight: 600; margin: 0; }
+  a { color: var(--gold); }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* ---------- Login ---------- */
+  #loginScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .login-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 40px 32px;
+  }
+  .login-card h1 { font-size: 1.5rem; margin-bottom: 6px; }
+  .login-card p.sub { color: var(--text-muted); font-size: 0.9rem; margin: 0 0 28px; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 6px; }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 13px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .btn-primary { background: var(--gold); color: #14161c; width: 100%; }
+  .btn-primary:hover { background: var(--gold-hover); }
+  .btn-secondary { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--gold); }
+  .btn-danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); padding: 8px 14px; font-size: 0.85rem; }
+  .btn-danger:hover { background: var(--danger); color: #fff; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .error-msg { color: var(--danger); font-size: 0.85rem; margin-top: 12px; min-height: 1em; }
+  .success-msg { color: var(--success); font-size: 0.85rem; margin-top: 12px; min-height: 1em; }
+
+  /* ---------- Dashboard shell ---------- */
+  #dashboard { display: none; min-height: 100vh; }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .topbar h1 { font-size: 1.2rem; }
+  .topbar .who { color: var(--text-muted); font-size: 0.82rem; margin-top: 2px; }
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .toolbar input[type="search"] {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    min-width: 240px;
+  }
+
+  table { width: 100%; border-collapse: collapse; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  thead th {
+    text-align: left;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--bg-elevated); }
+  .prod-thumb { width: 42px; height: 42px; border-radius: 6px; object-fit: cover; background: var(--bg-input); }
+  .row-actions { display: flex; gap: 8px; }
+  .row-actions button { background: none; border: 1px solid var(--border); color: var(--text-secondary); border-radius: 6px; padding: 6px 10px; font-size: 0.8rem; }
+  .row-actions button:hover { border-color: var(--gold); color: var(--gold); }
+  .badge-pill { display: inline-block; font-size: 0.72rem; padding: 3px 9px; border-radius: 999px; background: rgba(197,160,89,0.15); color: var(--gold); margin-right: 6px; }
+  .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 0.82rem; margin-left: 6px; }
+
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+
+  /* ---------- Modal / editor ---------- */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5,6,8,0.75);
+    z-index: 100;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+  .modal {
+    width: 100%;
+    max-width: 640px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 30px;
+  }
+  .modal h2 { font-size: 1.3rem; margin-bottom: 4px; }
+  .modal .hint { color: var(--text-muted); font-size: 0.82rem; margin: 0 0 22px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+  .field textarea { resize: vertical; min-height: 64px; font-family: inherit; }
+
+  @media (max-width: 640px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    table, thead, tbody, th, td, tr { display: block; }
+    thead { display: none; }
+    tbody tr { border-bottom: 1px solid var(--border); padding: 12px 0; }
+    tbody td { border-bottom: none; padding: 4px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-card">
+    <h1>Catalog Dashboard</h1>
+    <p class="sub">Sign in to manage Raja's Wear products.</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password" />
+      </div>
+      <button type="submit" class="btn btn-primary" id="loginBtn">Sign In</button>
+      <div class="error-msg" id="loginError"></div>
+    </form>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="topbar">
+    <div>
+      <h1>Raja's Wear — Catalog Dashboard</h1>
+      <div class="who">Signed in as <span id="whoEmail"></span></div>
+    </div>
+    <button class="btn btn-secondary" id="logoutBtn">Sign Out</button>
+  </div>
+
+  <main>
+    <div class="toolbar">
+      <input type="search" id="searchInput" placeholder="Search products..." />
+      <button class="btn btn-primary" id="addProductBtn">+ Add Product</button>
+    </div>
+
+    <div id="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Flags</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="productsBody"></tbody>
+      </table>
+      <div class="empty-state" id="emptyState" style="display:none;">No products yet. Click "Add Product" to create your first one.</div>
+    </div>
+  </main>
+</div>
+
+<!-- ADD / EDIT MODAL -->
+<div class="overlay" id="editorOverlay">
+  <div class="modal">
+    <h2 id="editorTitle">Add Product</h2>
+    <p class="hint">Changes appear on the live site within a few seconds — no code deploy needed.</p>
+    <form id="productForm">
+      <input type="hidden" id="prodId" />
+      <div class="grid-2">
+        <div class="field">
+          <label>Product Name *</label>
+          <input type="text" id="f_name" required />
+        </div>
+        <div class="field">
+          <label>Category *</label>
+          <input type="text" id="f_category" required placeholder="Suits, Tuxedos, Blazers..." />
+        </div>
+        <div class="field">
+          <label>Sub-category</label>
+          <input type="text" id="f_subCategory" placeholder="Business, Wedding, Black Tie..." />
+        </div>
+        <div class="field">
+          <label>Badge label</label>
+          <input type="text" id="f_badge" placeholder="Bestseller, New Arrival..." />
+        </div>
+        <div class="field">
+          <label>Price (USD) *</label>
+          <input type="number" step="0.01" id="f_price" required />
+        </div>
+        <div class="field">
+          <label>Old / strike-through price</label>
+          <input type="number" step="0.01" id="f_oldPrice" />
+        </div>
+        <div class="field">
+          <label>Rating (0–5)</label>
+          <input type="number" step="0.1" min="0" max="5" id="f_rating" />
+        </div>
+        <div class="field">
+          <label>Review count</label>
+          <input type="number" id="f_reviewCount" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Short description</label>
+        <textarea id="f_shortDesc"></textarea>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Image URLs (one per line)</label>
+          <textarea id="f_images" placeholder="https://..."></textarea>
+        </div>
+        <div class="field">
+          <label>Sizes (comma-separated)</label>
+          <textarea id="f_sizes" placeholder="38R, 40R, 42R"></textarea>
+        </div>
+        <div class="field">
+          <label>Colors (one per line: Name, #hex)</label>
+          <textarea id="f_colors" placeholder="Midnight Navy, #152238"></textarea>
+        </div>
+        <div class="field">
+          <label>Detail bullets (one per line)</label>
+          <textarea id="f_details"></textarea>
+        </div>
+        <div class="field">
+          <label>Fabric</label>
+          <input type="text" id="f_fabric" />
+        </div>
+        <div class="field">
+          <label>Fit</label>
+          <input type="text" id="f_fit" />
+        </div>
+        <div class="field">
+          <label>Construction</label>
+          <input type="text" id="f_construction" />
+        </div>
+        <div class="field">
+          <label>Care instructions</label>
+          <input type="text" id="f_care" />
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label><input type="checkbox" id="f_isBestseller" style="width:auto; margin-right:6px;" /> Mark as Bestseller</label>
+        </div>
+        <div class="field">
+          <label><input type="checkbox" id="f_isNew" style="width:auto; margin-right:6px;" /> Mark as New Arrival</label>
+        </div>
+      </div>
+
+      <div class="error-msg" id="formError"></div>
+      <div class="success-msg" id="formSuccess"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="saveBtn">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const SUPABASE_URL = "https://dlflincjaeygmtdbbjwo.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_Opj1y1WsXF1CcCzBTP56uA_EKlvjrU4";
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  let allProducts = [];
+
+  const loginScreen = document.getElementById("loginScreen");
+  const dashboard = document.getElementById("dashboard");
+  const loginForm = document.getElementById("loginForm");
+  const loginError = document.getElementById("loginError");
+  const loginBtn = document.getElementById("loginBtn");
+  const whoEmail = document.getElementById("whoEmail");
+
+  // ---------- Auth ----------
+  async function checkSession() {
+    const { data } = await client.auth.getSession();
+    if (data.session) {
+      showDashboard(data.session.user.email);
+    } else {
+      loginScreen.style.display = "flex";
+      dashboard.style.display = "none";
+    }
+  }
+
+  function showDashboard(email) {
+    loginScreen.style.display = "none";
+    dashboard.style.display = "block";
+    whoEmail.textContent = email;
+    loadProducts();
+  }
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    loginError.textContent = "";
+    loginBtn.disabled = true;
+    loginBtn.textContent = "Signing in...";
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const { data, error } = await client.auth.signInWithPassword({ email, password });
+    loginBtn.disabled = false;
+    loginBtn.textContent = "Sign In";
+    if (error) {
+      loginError.textContent = "Incorrect email or password.";
+      return;
+    }
+    showDashboard(data.user.email);
+  });
+
+  document.getElementById("logoutBtn").addEventListener("click", async () => {
+    await client.auth.signOut();
+    location.reload();
+  });
+
+  // ---------- Load & render products ----------
+  async function loadProducts() {
+    const { data, error } = await client
+      .from("products")
+      .select("*")
+      .order("created_at", { ascending: true });
+    if (error) {
+      console.error(error);
+      return;
+    }
+    allProducts = data || [];
+    renderTable(allProducts);
+  }
+
+  function renderTable(products) {
+    const body = document.getElementById("productsBody");
+    const empty = document.getElementById("emptyState");
+    body.innerHTML = "";
+    if (!products.length) {
+      empty.style.display = "block";
+      return;
+    }
+    empty.style.display = "none";
+    products.forEach((p) => {
+      const img = (Array.isArray(p.images) && p.images[0]) || "";
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${img ? `<img class="prod-thumb" src="${escapeAttr(img)}" alt="" />` : ""}</td>
+        <td><strong>${escapeHtml(p.name)}</strong></td>
+        <td>${escapeHtml(p.category || "")}</td>
+        <td>$${Number(p.price).toFixed(2)}${p.old_price ? `<span class="price-old">$${Number(p.old_price).toFixed(2)}</span>` : ""}</td>
+        <td>${p.is_bestseller ? '<span class="badge-pill">Bestseller</span>' : ""}${p.is_new ? '<span class="badge-pill">New</span>' : ""}</td>
+        <td>
+          <div class="row-actions">
+            <button data-action="edit" data-id="${escapeAttr(p.id)}">Edit</button>
+            <button data-action="delete" data-id="${escapeAttr(p.id)}">Delete</button>
+          </div>
+        </td>
+      `;
+      body.appendChild(tr);
+    });
+  }
+
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    const q = e.target.value.trim().toLowerCase();
+    const filtered = allProducts.filter((p) =>
+      (p.name || "").toLowerCase().includes(q) || (p.category || "").toLowerCase().includes(q)
+    );
+    renderTable(filtered);
+  });
+
+  document.getElementById("productsBody").addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const product = allProducts.find((p) => p.id === id);
+    if (btn.dataset.action === "edit") openEditor(product);
+    if (btn.dataset.action === "delete") deleteProduct(product);
+  });
+
+  async function deleteProduct(product) {
+    if (!confirm(`Delete "${product.name}"? This cannot be undone.`)) return;
+    const { error } = await client.from("products").delete().eq("id", product.id);
+    if (error) {
+      alert("Could not delete: " + error.message);
+      return;
+    }
+    loadProducts();
+  }
+
+  // ---------- Editor modal ----------
+  const overlay = document.getElementById("editorOverlay");
+  const form = document.getElementById("productForm");
+  const editorTitle = document.getElementById("editorTitle");
+  const formError = document.getElementById("formError");
+  const formSuccess = document.getElementById("formSuccess");
+
+  document.getElementById("addProductBtn").addEventListener("click", () => openEditor(null));
+  document.getElementById("cancelBtn").addEventListener("click", closeEditor);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeEditor(); });
+
+  function openEditor(product) {
+    form.reset();
+    formError.textContent = "";
+    formSuccess.textContent = "";
+    editorTitle.textContent = product ? "Edit Product" : "Add Product";
+    document.getElementById("prodId").value = product ? product.id : "";
+
+    document.getElementById("f_name").value = product?.name || "";
+    document.getElementById("f_category").value = product?.category || "";
+    document.getElementById("f_subCategory").value = product?.sub_category || "";
+    document.getElementById("f_badge").value = product?.badge || "";
+    document.getElementById("f_price").value = product?.price ?? "";
+    document.getElementById("f_oldPrice").value = product?.old_price ?? "";
+    document.getElementById("f_rating").value = product?.rating ?? "";
+    document.getElementById("f_reviewCount").value = product?.review_count ?? "";
+    document.getElementById("f_shortDesc").value = product?.short_desc || "";
+    document.getElementById("f_images").value = (product?.images || []).join("\n");
+    document.getElementById("f_sizes").value = (product?.sizes || []).join(", ");
+    document.getElementById("f_colors").value = (product?.colors || []).map(c => `${c.name}, ${c.hex}`).join("\n");
+    document.getElementById("f_details").value = (product?.details || []).join("\n");
+    document.getElementById("f_fabric").value = product?.fabric || "";
+    document.getElementById("f_fit").value = product?.fit || "";
+    document.getElementById("f_construction").value = product?.construction || "";
+    document.getElementById("f_care").value = product?.care || "";
+    document.getElementById("f_isBestseller").checked = !!product?.is_bestseller;
+    document.getElementById("f_isNew").checked = !!product?.is_new;
+
+    overlay.style.display = "flex";
+  }
+
+  function closeEditor() {
+    overlay.style.display = "none";
+  }
+
+  function slugify(name) {
+    return "rw-" + name.toLowerCase().trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "")
+      .slice(0, 40) + "-" + Math.random().toString(36).slice(2, 6);
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    formError.textContent = "";
+    formSuccess.textContent = "";
+
+    const existingId = document.getElementById("prodId").value;
+    const name = document.getElementById("f_name").value.trim();
+
+    const colors = document.getElementById("f_colors").value
+      .split("\n").map(l => l.trim()).filter(Boolean)
+      .map(line => {
+        const [n, hex] = line.split(",").map(s => s.trim());
+        return { name: n || line, hex: hex || "#000000" };
+      });
+
+    const payload = {
+      name,
+      category: document.getElementById("f_category").value.trim(),
+      sub_category: document.getElementById("f_subCategory").value.trim() || null,
+      badge: document.getElementById("f_badge").value.trim() || null,
+      price: parseFloat(document.getElementById("f_price").value),
+      old_price: document.getElementById("f_oldPrice").value ? parseFloat(document.getElementById("f_oldPrice").value) : null,
+      rating: document.getElementById("f_rating").value ? parseFloat(document.getElementById("f_rating").value) : 0,
+      review_count: document.getElementById("f_reviewCount").value ? parseInt(document.getElementById("f_reviewCount").value, 10) : 0,
+      short_desc: document.getElementById("f_shortDesc").value.trim() || null,
+      images: document.getElementById("f_images").value.split("\n").map(s => s.trim()).filter(Boolean),
+      sizes: document.getElementById("f_sizes").value.split(",").map(s => s.trim()).filter(Boolean),
+      colors: colors,
+      details: document.getElementById("f_details").value.split("\n").map(s => s.trim()).filter(Boolean),
+      fabric: document.getElementById("f_fabric").value.trim() || null,
+      fit: document.getElementById("f_fit").value.trim() || null,
+      construction: document.getElementById("f_construction").value.trim() || null,
+      care: document.getElementById("f_care").value.trim() || null,
+      is_bestseller: document.getElementById("f_isBestseller").checked,
+      is_new: document.getElementById("f_isNew").checked,
+      updated_at: new Date().toISOString(),
+    };
+
+    document.getElementById("saveBtn").disabled = true;
+
+    let error;
+    if (existingId) {
+      ({ error } = await client.from("products").update(payload).eq("id", existingId));
+    } else {
+      payload.id = slugify(name);
+      ({ error } = await client.from("products").insert(payload));
+    }
+
+    document.getElementById("saveBtn").disabled = false;
+
+    if (error) {
+      formError.textContent = "Could not save: " + error.message;
+      return;
+    }
+    formSuccess.textContent = "Saved.";
+    await loadProducts();
+    setTimeout(closeEditor, 500);
+  });
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+  }
+  function escapeAttr(str) {
+    return escapeHtml(str);
+  }
+
+  checkSession();
+</script>
+</body>
+</html>
